@@ -1,23 +1,16 @@
 import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
-import Logo from '../../Assets/images/logo.svg';
 import './styles.scss';
 import Sidebar from '../../Components/Sidebar';
-
+import Header from '../../Components/Header';
 const Vehicles = () => {
-  const { Header, Sider, Content } = Layout;
+  const { Content } = Layout;
   return (
     <Layout>
-      <Header className="header">
-        <div className="logo">
-          <img src={Logo} alt="logo" />
-        </div>
-      </Header>
+      <Header />
       <Layout>
-        <Sider className="site-layout-background sider-container">
-          <Sidebar />
-        </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
+        <Sidebar />
+        <Layout style={{ padding: '0 20px 20px 65px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
