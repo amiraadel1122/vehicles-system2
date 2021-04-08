@@ -1,3 +1,26 @@
-.site-layout-background {
-  background: #fff;
+@import '../../Assets/styles/variables';
+.ant-layout {
+  font-family: $font-family;
+}
+
+.primary-text {
+  color: $primary-text;
+}
+
+.grey-text {
+  color: #98a9bc;
+}
+
+.history-layout {
+  padding: 20px 0px 20px 40px;
+}
+
+.content-container {
+  padding: 24px;
+  margin: 0;
+  min-height: 460px !important;
+}
+
+.font-sm {
+  font-size: $font-sm;
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 import './styles.scss';
 import Sidebar from '../../Components/Sidebar';
 import Header from '../../Components/Header';
+import History from '../../Components/History';
 const Vehicles = () => {
   const { Content } = Layout;
   return (
@@ -10,21 +11,9 @@ const Vehicles = () => {
       <Header />
       <Layout>
         <Sidebar />
-        <Layout style={{ padding: '0 20px 20px 65px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
-          <Content
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-            }}
-          >
-            Content
+        <Layout className="history-layout">
+          <Content className="site-layout-background content-container">
+            <History />
           </Content>
         </Layout>
       </Layout>
