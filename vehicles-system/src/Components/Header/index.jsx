@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import Logo from '../../Assets/images/logo.svg';
-import User from '../../Assets/images/user.png';
+import Logo from '../../assets/images/logo.svg';
+import User from '../../assets/images/user.png';
 import { Layout } from 'antd';
 
 const Header = () => {

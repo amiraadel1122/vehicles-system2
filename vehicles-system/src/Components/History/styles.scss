@@ -1,4 +1,4 @@
-@import '../../Assets/styles/variables';
+@import '../../assets/styles/variables';
 .ant-layout-content {
   button {
     border-radius: 4px;
@@ -36,5 +36,8 @@
       font-size: 12px;
       color: #21a21e;
     }
+  }
+  .ant-table-row-expand-icon {
+    display: none;
   }
 }
