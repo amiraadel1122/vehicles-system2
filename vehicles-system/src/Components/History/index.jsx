@@ -7,6 +7,7 @@ import { Table, Space } from 'antd';
 import Edit from '../../Assets/images/edit.svg';
 import Delete from '../../Assets/images/delete.svg';
 import Car from '../../Assets/images/car.png';
+import Dialog from '../Dialog';
 // import Data from '../../Constants/tableData.json';
 
 const History = () => {
@@ -142,6 +143,7 @@ const History = () => {
         </Dropdown>
       </div>
       <Table columns={columns} dataSource={data} />
+      <Dialog />
     </>
   );
 };
