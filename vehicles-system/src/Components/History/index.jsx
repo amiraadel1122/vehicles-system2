@@ -1,16 +1,19 @@
-import React from 'react';
-import './styles.scss';
+import React, { useState } from 'react';
 import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import Flag from '../../Assets/images/eg-flag.png';
+import Flag from '../../assets/images/eg-flag.png';
 import { Table, Space } from 'antd';
-import Edit from '../../Assets/images/edit.svg';
-import Delete from '../../Assets/images/delete.svg';
-import Car from '../../Assets/images/car.png';
-import Dialog from '../Dialog';
-// import Data from '../../Constants/tableData.json';
+import Edit from '../../assets/images/edit.svg';
+import Delete from '../../assets/images/delete.svg';
+import Car from '../../assets/images/car.png';
+import Dialog from '../dialog';
+import Data from '../../constants/tableData.json';
+import './styles.scss';
 
 const History = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedKey, setSelectedKey] = useState(null);
+  const [tableData, setTableData] = useState(Data);
   const menu = (
     <Menu>
       <Menu.Item key="1">Date</Menu.Item>
@@ -54,14 +57,13 @@ const History = () => {
     },
     {
       title: 'Cost',
-      dataIndex: 'cost',
       key: 'cost',
       width: 200,
-      render: (text) => (
+      render: ({ cost, fuel }) => (
         <div>
           <div className="vehicle-details">
-            <span>{text}</span>
-            <span className="font-sm">Rp 10,200/ltr</span>
+            <span>{cost}</span>
+            <span className="font-sm">{fuel}</span>
           </div>
         </div>
       ),
@@ -69,60 +71,45 @@ const History = () => {
     {
       title: 'Actions',
       key: 'action',
-      render: () => (
+      render: ({ key }) => (
         <Space size="small">
-          <Button type="text">
+          <Button
+            type="text"
+            onClick={() => {
+              setSelectedKey(key);
+              setIsModalOpen(true);
+            }}
+          >
             <img src={Edit} alt="logo" />
           </Button>
-          <Button type="text">
+          <Button type="text" onClick={() => handleDeleteAction(key)}>
             <img src={Delete} alt="logo" />
           </Button>
         </Space>
       ),
     },
   ];
-  const data = [
-    {
-      key: '1',
-      name: '[001] Toyota Avanza',
-      time: '10:34 AM',
-      total: 'Rp 950.000',
-      volume: '123.14 L',
-      cost: 'Active',
-    },
-    {
-      key: '2',
-      name: '[005] Daihatsu Xenia',
-      time: '09:34 PM',
-      total: 'Rp 950.000',
-      volume: '123.14 L',
-      cost: ['loser'],
-    },
-    {
-      key: '3',
-      name: '[001] Toyota Avanza',
-      time: '10:23 AM',
-      total: 'Rp 950.000',
-      volume: '123.14 L',
-      cost: ['cool', 'teacher'],
-    },
-    {
-      key: '4',
-      name: '[001] Toyota Avanza',
-      time: '09:34 PM',
-      total: 'Rp 950.000',
-      volume: '123.14 L',
-      cost: ['cool', 'teacher'],
-    },
-    {
-      key: '5',
-      name: '[005] Daihatsu Xenia',
-      time: '09:34 PM',
-      total: 'Rp 950.000',
-      volume: '123.14 L',
-      cost: ['cool', 'teacher'],
-    },
-  ];
+
+  const modelCancel = () => setIsModalOpen(false);
+
+  const handleEditAction = (data) => {
+    const clonedData = [...tableData];
+    const itemIndex = clonedData.findIndex((item) => item.key === data.key);
+    if (itemIndex >= 0) {
+      clonedData[itemIndex] = data;
+      setTableData(clonedData);
+      modelCancel();
+    }
+  };
+
+  const handleDeleteAction = (id) => {
+    const clonedData = [...tableData];
+    const itemIndex = clonedData.findIndex((item) => item.key === id);
+    if (itemIndex >= 0) {
+      clonedData.splice(itemIndex, 1);
+      setTableData(clonedData);
+    }
+  };
   return (
     <>
       <div className="filters-wrapper">
@@ -142,8 +129,13 @@ const History = () => {
           </Button>
         </Dropdown>
       </div>
-      <Table columns={columns} dataSource={data} />
-      <Dialog />
+      <Table columns={columns} dataSource={tableData} />
+      <Dialog
+        selectedKey={selectedKey}
+        isModalOpen={isModalOpen}
+        closeModal={modelCancel}
+        handleEditAction={handleEditAction}
+      />
     </>
   );
 };

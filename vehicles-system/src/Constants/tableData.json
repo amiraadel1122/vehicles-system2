@@ -1,18 +1,47 @@
 [
   {
-    "title": "Name",
-    "dataIndex": "name",
-    "key": "name",
-    "render": "text => <a>{text}</a>"
+    "key": "1",
+    "name": "[001] Toyota Avanza",
+    "time": "10:34 AM",
+    "total": "Rp 950.000",
+    "volume": "123.14 L",
+    "fuel": "Rp 10,200/ltr",
+    "cost": "Active"
   },
   {
-    "title": "Age",
-    "dataIndex": "age",
-    "key": "age"
+    "key": "2",
+    "name": "[005] Daihatsu Xenia",
+    "time": "09:34 PM",
+    "total": "Rp 950.000",
+    "volume": "123.14 L",
+    "fuel": "Rp 10,200/ltr",
+    "cost": ["loser"]
   },
   {
-    "title": "Address",
-    "dataIndex": "address",
-    "key": "address"
+    "key": "3",
+    "name": "[001] Toyota Avanza",
+    "time": "10:23 AM",
+    "total": "Rp 950.000",
+    "volume": "123.14 L",
+    "fuel": "Rp 10,200/ltr",
+    "cost": ["cool", "teacher"]
+  },
+  {
+    "key": "4",
+    "name": "[001] Toyota Avanza",
+    "time": "09:34 PM",
+    "total": "Rp 950.000",
+    "volume": "123.14 L",
+    "fuel": "Rp 10,200/ltr",
+    "cost": ["cool", "teacher"]
+  },
+  {
+    "key": "5",
+    "name": "[005] Daihatsu Xenia",
+    "time": "09:34 PM",
+    "total": "Rp 950.000",
+    "volume": "123.14 L",
+    "fuel": "Rp 10,200/ltr",
+    "cost": ["cool", "teacher"]
   }
 ]
