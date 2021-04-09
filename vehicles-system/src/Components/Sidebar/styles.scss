@@ -1,0 +1,31 @@
+@import '../../assets/styles/variables';
+
+.ant-layout-sider {
+  border-right: 1px solid #e8ecef;
+
+  .ant-menu-submenu-arrow {
+    display: none;
+  }
+
+  .side-menu {
+    font-size: $text-size;
+    height: 100%;
+    border-right: 1px solid #e8ecef;
+    color: $text-color;
+    width: 242px;
+    .ant-menu-item {
+      color: $text-color;
+    }
+
+    .ant-menu-item-selected {
+      font-weight: 500;
+    }
+
+    .ant-menu-item-selected::after,
+    .ant-menu-item::after {
+      border-right: none !important;
+      border-left: 3px solid #1890ff;
+      left: 0;
+    }
+  }
+}

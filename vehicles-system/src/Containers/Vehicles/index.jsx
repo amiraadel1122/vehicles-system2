@@ -1,22 +1,24 @@
 import React from 'react';
 import { Layout } from 'antd';
-import Sidebar from '../../Components/Sidebar';
 import './styles.scss';
-
+import Sidebar from '../../components/sidebar';
+import Header from '../../components/header';
+import History from '../../components/history';
 const Vehicles = () => {
-    const { Header, Sider, Content } = Layout;
-    return (
-        <Layout>
-        <Sider>
-          <Sidebar />
-        </Sider>
-        <Layout>
-          <Header>
-          </Header>
-          <Content>Content</Content>
+  const { Content } = Layout;
+  return (
+    <Layout>
+      <Header />
+      <Layout>
+        <Sidebar />
+        <Layout className="history-layout">
+          <Content className="site-layout-background content-container">
+            <History />
+          </Content>
         </Layout>
       </Layout>
-    )
-}
+    </Layout>
+  );
+};
 
 export default Vehicles;
