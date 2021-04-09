@@ -43,7 +43,21 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
     </Menu>
   );
 
-  const handleOk = () => {
+  const handleOk = (e) => {
+    form
+      .validateFields()
+      .then((values) => {
+        //  //form.resetFields();
+        // onCreate(values);
+        handleEditAction(newData);
+        // debugger;
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+        // debugger;
+        //  setSelectedFuel('Toyota Prius (A-41082)');
+        handleEditAction(false);
+      });
     const newData = {
       key: selectedKey,
       name: selectedVehicle,
@@ -53,13 +67,14 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
       fuel: selectedFuel,
       cost: 'Active',
     };
+    //form.validateFields();
 
     setSelectedVehicle('Toyota Prius (A-41082)');
     setSelectedDate(moment('01/01/2015', dateFormat));
     setOdometer(null);
     setVolume(null);
     setSelectedFuel('Toyota Prius (A-41082)');
-    handleEditAction(newData);
+    // handleEditAction(newData);
   };
 
   const handleCancel = () => closeModal();
@@ -75,15 +90,7 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
       <Form form={form} layout="vertical">
         <Row>
           <Col span={24}>
-            <Form.Item
-              label="Vehicle"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please select a vehicle!',
-                },
-              ]}
-            >
+            <Form.Item label="Vehicle" name="vehicle">
               <Dropdown overlay={menuVehicle} trigger={['click']}>
                 <Button className="ant-dropdown-link">
                   <p>{selectedVehicle}</p> <DownOutlined />
@@ -96,6 +103,7 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
           <Col span={12}>
             <Form.Item
               label="Start Date"
+              name="startDate"
               rules={[
                 {
                   required: true,
@@ -113,6 +121,7 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
           <Col span={12}>
             <Form.Item
               label="Odometer"
+              name="odometer"
               rules={[
                 {
                   required: true,
@@ -132,6 +141,7 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
           <Col span={12}>
             <Form.Item
               label="Volume"
+              name="volume"
               rules={[
                 {
                   required: true,
@@ -143,7 +153,7 @@ const Dialog = ({ isModalOpen, closeModal, selectedKey, handleEditAction }) => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Fuel Type (optional)">
+            <Form.Item label="Fuel Type (optional)" name="fuel">
               <Dropdown overlay={menuFuel} trigger={['click']}>
                 <Button className="ant-dropdown-link">
                   <p>{selectedFuel}</p> <DownOutlined />
